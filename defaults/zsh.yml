@@ -1,5 +1,2 @@
 ---
 
-shell_config_dir: "{{ xdg_config_home }}/zsh"
-
-shell_config_file: "{{ ansible_user_dir }}.zshrc"
