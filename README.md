@@ -2,7 +2,7 @@ pure
 ==================
 <!-- [![Build Status](https://travis-ci.org/mkwmms/ansible-pure.svg)](https://travis-ci.org/mkwmms/pure) -->
 
-Install & configure the [pure] prompt for bash, [zsh] & [fish] shells.
+Install & configure the [pure] prompt for [bash], [zsh] & [fish] shells.
 
 Requirements
 ------------
@@ -46,6 +46,7 @@ Author Information
 
 [@mkwmms]: https://github.com/mkwmms
 [aura]: https://github.com/aurapm/aura
+[bash]: https://www.gnu.org/software/bash/manual/bashref.html
 [default variables]: defaults/main.yml
 [dotstrap]: https://github.com/mkwmms/dotstrap
 [fasd]: https://github.com/clvv/fasd
