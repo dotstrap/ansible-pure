@@ -1,0 +1,11 @@
+---
+
+pure_config_file: "{{ shell_config_file | default(bash_config_file) }}"
+
+pure_config_block: |
+  fg_green="\[\e[32m\]";
+  fg_blue="\[\e[34m\]";
+  fg_magenta="\[\e[35m\]";
+  font_reset="\[\e[0m\]";
+
+  export PS1="${fg_green}\u${font_reset}@${fg_green}\h${font_reset}:${fg_blue}\w\n${fg_magenta}❯${font_reset} "

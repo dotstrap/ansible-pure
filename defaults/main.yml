@@ -5,30 +5,25 @@
 # These defaults are in many of mkwmms' roles; override them to prevent neeeding
 # to override the corresponding role default for each role individually.
 
-zsh_config_dir: "{{ xdg_config_home }}/zsh"
-zsh_config_file: "{{ ansible_user_dir }}/.zshrc"
+# Shell startup file where settings are written to.
+# This role uses the value of this variable if it is defined.
+# default:
+#   - bash: ~/.bash_profile
+#   - zsh: ~/.zshrc
+#   - fish: ~/.config/fish/config.fish
+# shell_config_file
 
-bash_config_dir: "{{ xdg_config_home }}/bash"
-bash_config_file: "{{ ansible_user_dir }}/.bash_profile"
+# Directory where shell inititialization files are installed to.
+# This role uses the value of this variable if it is defined.
+# default:
+#   - bash: ($XDG_DATA_HOME | ~/.local/share)/bash/functions/
+#   - zsh: ($XDG_DATA_HOME | ~/.local/share)/zsh/functions/
+#   - fish: ~/.config/fish/functions/
+# shell_data_dir
 
 configure_state: present
 
 #####=== pure defaults ===#####
-
-# TODO: should pure be installed under $XDG_CONFIG_HOME or $XDG_DATA_HOME by default?
-# The install location for pure (https://github.com/sindresorhus/pure).
-# default:
-#   - bash: ($XDG_CONFIG_HOME | ~/.config)/bash/site-functions/
-#   - zsh: ($XDG_CONFIG_HOME | ~/.config)/zsh/site-functions/
-#   - fish: N/A because fish hardcodes ~/.config/fish/functions/
-pure_config_dir: "{{ (ansible_user_shell | search('zsh')) | ternary(zsh_config_dir, bash_config_dir) }}/site-functions/pure"
-
-# Shell startup file where settings are written to via the blockinfile module.
-# default:
-#   - bash: ~/.bash_profile
-#   - zsh: ~/.zshrc
-#   - fish: N/A
-pure_config_file: "{{ (ansible_user_shell | search('zsh')) | ternary(zsh_config_file, bash_config_file) }}"
 
 # The state in which settings are written to pure_config_file via the blockinfile module.
 # choices: [ present, absent ]

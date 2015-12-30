@@ -1,0 +1,18 @@
+---
+
+pure_install_dir: "{{ shell_data_dir | default(zsh_data_dir) }}/functions/pure"
+
+pure_config_file: "{{ shell_config_file | default(zsh_config_file) }}"
+
+pure_config_block: |
+  fpath=( "{{ pure_install_dir }}" $fpath )
+  autoload -U promptinit && promptinit
+  prompt pure
+
+pure_url: "https://raw.githubusercontent.com/sindresorhus/pure/master"
+
+pure_files:
+  - name: "pure.zsh"
+    dest: "prompt_pure_setup"
+  - name: "async.zsh"
+    dest: "async"

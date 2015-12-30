@@ -1,84 +1,38 @@
 ---
 
+- name: setup
+  include_vars: "{{ ansible_user_shell | basename }}.yml"
+
 #####=== install ===#####
 
 - block:
-    - name: zsh | setup | pure_config_dir
-      file: path="{{ pure_config_dir }}" state=directory
+  - name: fish/zsh | install | create installation directory
+    file: path="{{ pure_install_dir }}" state=directory follow=yes
 
-    - name: zsh | install | prompt & async
-      get_url:
-        url: "https://raw.githubusercontent.com/sindresorhus/pure/master/{{ item.src }}"
-        dest: "{{ pure_config_dir }}/{{ item.dest }}"
-        force: yes
-      with_items:
-        - src: pure.zsh
-          dest: prompt_pure_setup
-        - src: async.zsh
-          dest: async
-  when: ansible_user_shell | match(".*\/(zsh)")
+  - name: fish/zsh | install
+    get_url:
+      url: "{{ pure_url }}/{{ item.name }}"
+      dest: "{{ pure_install_dir }}/{{ item.dest | default(item.name) }}"
+      force: yes
+    with_items: pure_files
+  when: pure_files is defined
   tags:
     - bootstrap
     - install
     - update
 
-# - name: fish | download
-  # local_action: command "git submodule foreach git pull origin master"
-  # when: ansible_user_shell | match(".*\/fish")
-  # tags: update
-
 #####=== configure ===#####
 
 # TODO: use sindresorhus/pure for bash if it is compatible
-- name: bash | configure
+- name: bash/zsh | configure | shell initialization
   blockinfile:
     dest: "{{ pure_config_file }}"
     create: yes
     backup: no
     state: "{{ pure_configure_state }}"
     marker: "{{ pure_marker }}"
-    block: |
-      fg_green="\[\e[32m\]";
-      fg_blue="\[\e[34m\]";
-      fg_magenta="\[\e[35m\]";
-      font_reset="\[\e[0m\]";
-
-      export PS1="${fg_green}\u${font_reset}@${fg_green}\h${font_reset}:${fg_blue}\w\n${fg_magenta}❯${font_reset} "
-  when: ansible_user_shell | match(".*\/(bash)")
+    block: "{{ pure_config_block }}"
+  when: pure_config_block is defined
   tags:
     - bootstrap
     - configure
-    - update
-
-- block:
-    - name: zsh | configure | site functions directory
-      blockinfile:
-        dest: "{{ pure_config_file }}"
-        create: yes
-        backup: no
-        state: "{{ pure_configure_state }}"
-        marker: "{{ pure_marker }}"
-        block: |
-          fpath=( "{{ pure_config_dir }}" $fpath )
-          autoload -U promptinit && promptinit
-          prompt pure
-  when: ansible_user_shell | match(".*\/(zsh)")
-  tags:
-    - bootstrap
-    - configure
-    - update
-
-- block:
-      # fish hardcodes ~/.config/fish so no need to check $XDG_CONFIG_HOME
-    - name: fish | setup | function directory
-      file: dest="{{ ansible_user_dir }}/.config/fish/functions" state=directory
-
-    # FIXME: synchronize module does not work
-    - name: fish | install functions
-      copy: src="{{ item }}" dest="{{ ansible_user_dir }}/.config/fish/functions"
-      with_fileglob: fish/*.fish
-  when: ansible_user_shell | match(".*\/fish")
-  tags:
-    - bootstrap
-    - configure
-    - update
