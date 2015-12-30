@@ -12,7 +12,7 @@ None.
 Role Variables
 --------------
 
-See [default variables] & [variables].
+See [default variables].
 
 Dependencies
 ------------
