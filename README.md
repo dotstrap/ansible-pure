@@ -1,5 +1,5 @@
-pure
-==================
+ansible-pure
+============
 <!-- [![Build Status](https://travis-ci.org/mkwmms/ansible-pure.svg)](https://travis-ci.org/mkwmms/pure) -->
 
 Install & configure the [pure] prompt for [bash], [zsh] & [fish] shells.
