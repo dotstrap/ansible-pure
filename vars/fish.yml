@@ -2,7 +2,7 @@
 
 pure_install_dir: "{{ shell_data_dir | default(fish_data_dir) }}/functions"
 
-pure_url: "https://raw.githubusercontent.com/mkwmms/theme-pure/ssh"
+pure_url: "https://raw.githubusercontent.com/rafaelrinaldi/pure"
 
 pure_files:
   - name:  __format_time.fish
