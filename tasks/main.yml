@@ -4,6 +4,7 @@
 # ie. 'bash-5.1' instead of 'bash'
 - name: setup
   include_vars: "{{ ansible_user_shell | basename }}.yml"
+  tags: always
 
 #####=== install ===#####
 
