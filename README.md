@@ -1,6 +1,6 @@
 ansible-pure
 ============
-[![Build Status](https://travis-ci.org/mwilliammyers/ansible-pure.svg)](https://travis-ci.org/mwilliammyers/ansible-pure)
+[![Build Status](https://travis-ci.org/dotstrap/ansible-pure.svg)](https://travis-ci.org/dotstrap/ansible-pure)
 
 Install & configure the [pure] prompt for [bash], [zsh] & [fish] shells.
 
@@ -8,7 +8,7 @@ Installation
 ------------
 
 ```
-ansible-galaxy install mwilliammyers.pure
+ansible-galaxy install dotstrap.pure
 ```
 
 Requirements
@@ -34,7 +34,7 @@ Using all the [default variables]:
 ```
     - hosts: all
       roles:
-         - role: mwilliammyers.pure
+         - role: dotstrap.pure
 ```
 
 Notes
