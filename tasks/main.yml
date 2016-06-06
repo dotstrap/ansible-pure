@@ -21,8 +21,11 @@
   when: pure_files is defined
   tags:
     - bootstrap
+    - bootstrap_pure
     - install
+    - install_pure
     - update
+    - update_pure
 
 #####=== configure ===#####
 
@@ -38,4 +41,6 @@
   when: pure_config_block is defined
   tags:
     - bootstrap
+    - bootstrap_pure
     - configure
+    - configure_pure
