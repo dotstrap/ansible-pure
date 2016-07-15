@@ -34,4 +34,4 @@ pure_config_block: |
   gry="\[\e[30m\]"
   rst="\[\e[0m\]"
 	
-  export PS1="${grn}\u${rst}@${grn}\h${rst}:${blu}\w ${gry}${git_branch}${git_dirty}${rst}\n\$ "
+  export PS1="${grn}\u${rst}@${grn}\h${rst}:${blu}\w ${gry}${git_branch}${git_dirty}${pur}\n\$ ${rst}"
