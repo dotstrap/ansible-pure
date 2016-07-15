@@ -3,7 +3,7 @@
 pure_config_file: "{{ shell_config_file | default(bash_config_file) }}"
 
 pure_config_block: |
-  # credit: jimeh/git-aware-prompt
+	# credit: jimeh/git-aware-prompt
 	find_git_branch() {
 		# Based on: http://stackoverflow.com/a/13003854/170413
 		local branch
@@ -28,10 +28,10 @@ pure_config_block: |
 
 	PROMPT_COMMAND="find_git_branch; find_git_dirty; $PROMPT_COMMAND"
 
-  grn="\[\e[32m\]"
-  blu="\[\e[34m\]"
-  pur="\[\e[35m\]"
-  gry="\[\e[90m\]"
-  rst="\[\e[0m\]"
+	grn="\[\e[32m\]"
+	blu="\[\e[34m\]"
+	pur="\[\e[35m\]"
+	gry="\[\e[90m\]"
+	rst="\[\e[0m\]"
 	
-  export PS1="${grn}\u${rst}@${grn}\h${rst}:${blu}\w ${gry}${git_branch}${git_dirty}${pur}\n\$ ${rst}"
+	export PS1="${grn}\u${rst}@${grn}\h${rst}:${blu}\w ${gry}${git_branch}${git_dirty}${pur}\n\$ ${rst}"
