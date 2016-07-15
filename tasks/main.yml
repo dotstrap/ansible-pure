@@ -17,7 +17,7 @@
       url: "{{ pure_url }}/{{ item.name }}"
       dest: "{{ pure_install_dir }}/{{ item.dest | default(item.name) }}"
       force: yes
-    with_items: pure_files
+    with_items: "{{ pure_files }}"
   when: pure_files is defined
   tags:
     - bootstrap
